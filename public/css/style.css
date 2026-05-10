@@ -53,33 +53,21 @@ body{
 
 .f-info{
     min-height: 8rem;
-    padding: 1rem 0;
+    padding: 2rem 0;
     background-color: #ebebeb;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .f-info-links, .f-info-social, .f-info-brand {
-    width: 100%;
     font-size: 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-@media (min-width: 768px) {
-    .f-info {
-        justify-content: center;
-        gap: 5rem;
-        padding: 1rem 3rem;
-    }
-    .f-info-links, .f-info-social, .f-info-brand {
-        width: auto;
-    }
 }
 
 .f-info-social .social-icon {
@@ -134,27 +122,19 @@ body{
     border: none !important;
 }
 
-/* .show-img {
-    height: 30vh;
-    border-radius: 1.5rem !important;
-    object-fit: cover;
-} */
-
-/* */
 .show-img {
-    max-width: 400px;       /* Keeps the image from getting too wide */
-    height: 200px;          /* Very compact height */
-    display: block;
-    margin: 0 auto;         /* Centers the image in the card */
-    object-fit: contain;
+    width: 100%;
+    height: 35vh;
+    object-fit: cover !important;
     border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
-/* .show-img {
-    height: 30vh;
-    border-radius: 1.5rem !important;
-    object-fit: contain;
-    background-color: #f0f0f0; 
-} */
+
+@media (min-width: 768px) {
+    .show-img {
+        height: 50vh;
+    }
+}
 
 /* Button Layout */
 .btns {

@@ -5,8 +5,8 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-// const mongourl = "mongodb://127.0.0.1:27017/project";
-const dburl = process.env.ATLASDB_URL;
+const mongourl = "mongodb://127.0.0.1:27017/project";
+// const dburl = process.env.ATLASDB_URL;
 const path = require("path");
 const methodoverride = require("method-override");
 const ejsmate = require("ejs-mate");
@@ -38,12 +38,12 @@ main().then(() => {
 });
 
 async function main() {
-    await mongoose.connect(dburl);
+    await mongoose.connect(mongourl);
 }
 
 
 const store = MongoStore.create({
-    mongoUrl: dburl,
+    mongoUrl: mongourl,
     crypto: {
         secret: process.env.SECRET
     },

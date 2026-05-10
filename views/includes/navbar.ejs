@@ -32,7 +32,6 @@
     padding: 0.5rem 1.2rem !important;
     font-weight: 600;
     transition: all 0.3s ease;
-    margin-right: 1rem;
     display: inline-block;
   }
 
@@ -74,33 +73,31 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-    
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse d-md-flex align-items-md-center" id="navbarNav">
+      <!-- Left side -->
+      <ul class="navbar-nav me-md-auto mb-2 mb-md-0">
         <li class="nav-item">
           <a class="nav-link" href="/listings">Explore</a>
         </li>
       </ul>
 
-    
-      <div class="navbar-nav ms-auto">
-        <form class="d-flex my-2 my-md-0" role="search" action="/listings" method="GET">
-          <input class="form-control me-2 search-inp" type="search" placeholder="Search Destination" name="location" value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>" />
-          <button class="btn btn-search" type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i>Search
-          </button>
-        </form>
-      </div>
+      <!-- Center side -->
+      <form class="d-flex mx-md-auto mb-3 mb-md-0" role="search" action="/listings" method="GET" style="max-width: 400px;">
+        <input class="form-control me-2 search-inp" type="search" placeholder="Search Destination" name="location" value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>" />
+        <button class="btn btn-search text-nowrap" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i> Search
+        </button>
+      </form>
 
-      <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item">
-          <a class="nav-link btn-property" href="/listings/new">Make Your Property Visible</a>
+      <!-- Right side -->
+      <ul class="navbar-nav ms-md-auto align-items-md-center">
+        <li class="nav-item mb-2 mb-md-0">
+          <a class="nav-link btn-property m-0 me-md-3" href="/listings/new">Make Your Property Visible</a>
         </li>
         <% if(!curruser){ %>
           <li class="nav-item"><a class="nav-link" href="/signup"><b>Signup</b></a></li>
-          <li class="nav-item"><a class="nav-link" href="/login"><b>Login</b></a></li>
-        <% } %>
-        <% if(curruser) { %>
+          <li class="nav-item ms-md-2"><a class="nav-link" href="/login"><b>Login</b></a></li>
+        <% } else { %>
           <li class="nav-item"><a class="nav-link" href="/logout"><b>Log Out</b></a></li>
         <% } %>
       </ul>
