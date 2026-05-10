@@ -3,99 +3,154 @@
 <style>
   #filters {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
+    overflow-x: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    padding-bottom: 0.5rem;
+    scroll-behavior: smooth;
+    flex: 1;
   }
-
+  @media (min-width: 768px) {
+    #filters {
+      flex-wrap: wrap !important;
+      overflow-x: visible !important;
+      justify-content: center;
+    }
+  }
+  #filters::-webkit-scrollbar {
+    display: none; 
+  }
   .filter {
     text-align: center;
     margin-right: 2rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
     opacity: 0.7;
     transition: 0.2s; 
+    text-decoration: none;
+    color: inherit;
+    flex-shrink: 0;
   }
-
+  @media (max-width: 767px) {
+    .filter {
+      margin-top: 0;
+    }
+  }
   .filter:hover {
     opacity: 1;
     cursor: pointer;
   }
-
   .filter p {
     font-size: 0.8rem;
     margin: 0; 
   }
-
   .filter i {
     font-size: 1.2rem;
   }
+  .scroll-btn {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  }
   .tax-info{
-    display : none;
+    display: inline;
   }
   .tax-toggle{
-    border:1px solid black;
+    border: 1px solid #dee2e6;
     border-radius: 1rem;
     height: 3.25rem;
     padding: 1rem;
-    margin-left: 2rem;
     align-items: center;
     display: flex;
+    flex-shrink: 0;
+    background-color: white;
   }
 </style>
 
-<div id="filters">
-    <div class="filter">
-      <div><i class="fa-solid fa-fire"></i></div>
-        <p>Trending</p>
+<div class="container-fluid px-0 mt-3">
+  <div class="row align-items-center">
+    <div class="col-12 col-md-8 col-lg-9 mb-3 mb-md-0">
+      <div class="d-flex align-items-center w-100 position-relative" style="min-width: 0;">
+        <button id="slideLeft" class="btn btn-light rounded-circle scroll-btn d-none d-md-none me-2">
+          <i class="fa-solid fa-angle-left"></i>
+        </button>
+        <div id="filters">
+            <a href="/listings?category=Trending" class="filter">
+              <div><i class="fa-solid fa-fire"></i></div>
+                <p>Trending</p>
+              </a>
+               <a href="/listings?category=Rooms" class="filter">
+              <div><i class="fa-solid fa-bed"></i></div>
+                <p>Rooms</p>
+              </a>
+              <a href="/listings?category=Mountains" class="filter">
+              <div><i class="fa-solid fa-mountain"></i></div>
+                <p>Mountains</p>
+              </a>
+               <a href="/listings?category=Iconic cities" class="filter">
+              <div><i class="fa-solid fa-mountain-city"></i></div>
+                <p>Iconic cities</p>
+              </a>
+              <a href="/listings?category=Castles" class="filter">
+              <div><i class="fa-brands fa-fort-awesome"></i></div>
+                <p>Castles</p>
+              </a>
+               <a href="/listings?category=Amazing pools" class="filter">
+              <div><i class="fa-solid fa-person-swimming"></i></div>
+                <p>Amazing pools</p>
+              </a>
+              <a href="/listings?category=Camping" class="filter">
+              <div><i class="fa-solid fa-campground"></i></div>
+                <p>Camping</p>
+              </a>
+               <a href="/listings?category=Beaches" class="filter">
+              <div><i class="fa-solid fa-umbrella-beach"></i></div>
+                <p>Beaches</p>
+              </a>
+               <a href="/listings?category=Domes" class="filter">
+              <div><i class="fa-solid fa-landmark-dome"></i></div>
+                <p>Domes</p>
+               </a>
+        </div>
+        <button id="slideRight" class="btn btn-light rounded-circle scroll-btn d-flex d-md-none ms-2">
+          <i class="fa-solid fa-angle-right"></i>
+        </button>
       </div>
-       <div class="filter">
-      <div><i class="fa-solid fa-bed"></i></div>
-        <p>Rooms</p>
-      </div>
-      <div class="filter">
-      <div><i class="fa-solid fa-mountain"></i></div>
-        <p>Mountains</p>
-      </div>
-       <div class="filter">
-      <div><i class="fa-solid fa-mountain-city"></i></div>
-        <p>Iconic cities</p>
-      </div>
-      <div class="filter">
-      <div><i class="fa-brands fa-fort-awesome"></i></div>
-        <p>Castles</p>
-      </div>
-       <div class="filter">
-      <div><i class="fa-solid fa-person-swimming"></i></div>
-        <p>Amazing pools</p>
-      </div>
-      <div class="filter">
-      <div><i class="fa-solid fa-campground"></i></div>
-        <p>Camping</p>
-      </div>
-       <div class="filter">
-      <div><i class="fa-solid fa-umbrella-beach"></i></div>
-        <p>Beaches</p>
-      </div>
-       <div class="filter">
-      <div><i class="fa-solid fa-landmark-dome"></i></div>
-        <p>Domes</p>
-       </div>
-       <div class="tax-toggle">
-        <div class="form-check-reverse form-switch">
-  <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
-  <label class="form-check-label" for="switchCheckDefault">Display Total After Taxes..</label>
-</div>
-       </div>
     </div>
+    
+    <div class="col-12 col-md-4 col-lg-3 d-flex justify-content-center justify-content-md-end">
+      <div class="tax-toggle shadow-sm w-100 w-md-auto d-flex justify-content-center">
+        <div class="form-check-reverse form-switch mb-0">
+          <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault" style="cursor:pointer">
+          <label class="form-check-label mb-0" for="switchCheckDefault" style="cursor:pointer">Display Total After Taxes</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+    <% if(alllistings.length === 0) { %>
+        <div class="col-12 text-center mt-5 mb-5">
+            <h4><i class="fa-solid fa-magnifying-glass"></i> No listings found for your search.</h4>
+            <p class="text-muted">Try searching for a different destination or country.</p>
+            <a href="/listings" class="btn btn-dark mt-3 px-4">Clear Search</a>
+        </div>
+    <% } %>
        <% for (let listing of  alllistings) { %>
-        <a href="/listings/<%=listing._id%>">
+        <a href="/listings/<%=listing._id%>" class="text-decoration-none text-dark">
     <div class="card col listing-card">
     <img src="<%=listing.image.url%>" class="card-img-top" alt="listing img" style=" height: 20rem"/>
     <div class="card-img-overlay"></div>
   <div class="card-body">
     <p class="card-text">
         <b><%=listing.title%></b> <br>
-        &#8377;<%= listing.price.toLocaleString("en-IN")  %>/Night
+        &#8377;<span class="listing-price" data-baseprice="<%= listing.price %>"><%= listing.price ? listing.price.toLocaleString("en-IN") : 0 %></span> /Night
         <i class="tax-info">&nbsp; &nbsp; +18% GST</i>
     </p>
   </div>
@@ -108,13 +163,60 @@
   let pricetoggle = document.getElementById("switchCheckDefault");
   pricetoggle.addEventListener("click",()=>{
     let taxinfo = document.getElementsByClassName("tax-info");
+    let priceElements = document.getElementsByClassName("listing-price");
+    
+    let isChecked = pricetoggle.checked;
 
-    for(info of taxinfo){
-      if(info.style.display != "inline"){
-        info.style.display = "inline";
-      }else{
+    for(let info of taxinfo){
+      if(isChecked){
         info.style.display = "none";
+      }else{
+        info.style.display = "inline";
       }
     }
-  })
-</Script>
+
+    for(let el of priceElements) {
+      let baseStr = el.getAttribute("data-baseprice");
+      if(!baseStr) continue;
+      
+      let basePrice = parseFloat(baseStr);
+      if(isChecked) {
+        let taxPrice = basePrice + (basePrice * 0.18);
+        el.innerText = taxPrice.toLocaleString("en-IN");
+      } else {
+        el.innerText = basePrice.toLocaleString("en-IN");
+      }
+    }
+  });
+
+  const filtersContainer = document.getElementById('filters');
+  const slideRight = document.getElementById('slideRight');
+  const slideLeft = document.getElementById('slideLeft');
+  
+  if(filtersContainer) {
+    // Show/hide left button based on scroll position
+    filtersContainer.addEventListener('scroll', () => {
+      if(slideLeft) {
+        if (filtersContainer.scrollLeft > 0) {
+          slideLeft.classList.remove('d-none');
+          slideLeft.classList.add('d-flex');
+        } else {
+          slideLeft.classList.add('d-none');
+          slideLeft.classList.remove('d-flex');
+        }
+      }
+    });
+
+    if(slideRight) {
+      slideRight.addEventListener('click', () => {
+        filtersContainer.scrollLeft += 250;
+      });
+    }
+    
+    if(slideLeft) {
+      slideLeft.addEventListener('click', () => {
+        filtersContainer.scrollLeft -= 250;
+      });
+    }
+  }
+</script>

@@ -7,14 +7,10 @@ const app = express();
 const mongoose = require("mongoose");
 // const mongourl = "mongodb://127.0.0.1:27017/project";
 const dburl = process.env.ATLASDB_URL;
-const listing = require("./models/listing.js")
 const path = require("path");
 const methodoverride = require("method-override");
 const ejsmate = require("ejs-mate");
-const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/expresserror.js");
-const { listingSchema, reviewSchema } = require("./schema.js");
-const review = require("./models/review.js");
 const session = require('express-session');
 const MongoStore = require("connect-mongo").default;
 const flash = require("connect-flash");
@@ -45,24 +41,7 @@ async function main() {
     await mongoose.connect(dburl);
 }
 
-const validListing = (req, res, next) => {
-    let { error } = listingSchema.validate(req.body);
-    if (error) {
-        let errmsg = error.details.map((el) => el.message).join(",");
-        throw new ExpressError(404, errmsg);
-    } else {
-        next();
-    }
-}
-const validreview = (req, res, next) => {
-    let { error } = reviewSchema.validate(req.body);
-    if (error) {
-        let errmsg = error.details.map((el) => el.message).join(",");
-        throw new ExpressError(404, errmsg);
-    } else {
-        next();
-    }
-}
+
 const store = MongoStore.create({
     mongoUrl: dburl,
     crypto: {

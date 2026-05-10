@@ -11,7 +11,8 @@ module.exports.listingSchema = joi.object({
             filename: joi.string().allow("", null)
         }).allow("", null), 
         country : joi.string().required(),
-        location: joi.string().required()
+        location: joi.string().required(),
+        category: joi.string().valid('Trending', 'Rooms', 'Mountains', 'Iconic cities', 'Castles', 'Amazing pools', 'Camping', 'Beaches', 'Domes').required()
     }).required(),
 });
 

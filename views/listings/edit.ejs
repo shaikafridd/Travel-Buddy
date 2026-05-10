@@ -1,6 +1,6 @@
 <% layout("/layouts/biolerplate") %>
-<div class="row mt-3">
-  <div class="col-8 offset-2">
+<div class="row mt-3 px-3 px-md-0">
+  <div class="col-12 col-md-8 offset-md-2 col-lg-8 offset-lg-2">
     <h3>Edit Listing Here!!!</h3>
     <form
       method="POST"
@@ -81,6 +81,19 @@
         />
         <div class="valid-feedback">Looks!! Good</div>
         <div class="invalid-feedback">Please Enter location!!</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select name="listing[category]" class="form-select" required>
+            <option value="" disabled <%= !listing.category ? 'selected' : '' %>>Select a category</option>
+            <% const categories = ['Trending', 'Rooms', 'Mountains', 'Iconic cities', 'Castles', 'Amazing pools', 'Camping', 'Beaches', 'Domes']; %>
+            <% for(let cat of categories) { %>
+                <option value="<%= cat %>" <%= listing.category === cat ? 'selected' : '' %>><%= cat %></option>
+            <% } %>
+        </select>
+        <div class="valid-feedback">Looks!! Good</div>
+        <div class="invalid-feedback">Please select a category!!</div>
       </div>
 
       <button class="btn btn-dark add-btn">Update Listing</button>

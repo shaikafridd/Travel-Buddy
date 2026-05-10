@@ -1,6 +1,5 @@
 const { listingSchema } = require("./schema.js");
 const ExpressError = require("./utils/expresserror.js");
-const { reviewSchema } = require("./schema.js");
 const listing = require("./models/listing.js")
 const review = require("./models/review.js")
 
@@ -40,18 +39,6 @@ module.exports.validListing = (req, res, next) => {
         next();
     }
 };
-
-
-// module.exports.validreview = (req, res, next) => {
-//     let { error } = reviewSchema.validate(req.body);
-//     if (error) {
-//         let errmsg = error.details.map((el) => el.message).join(",");
-//         throw new ExpressError(404, errmsg);
-//     } else {
-//         next();
-//     }
-// };
-
 
 module.exports.isReiviewOwner = async (req, res, next) => {
     let { id, reviewId } = req.params;

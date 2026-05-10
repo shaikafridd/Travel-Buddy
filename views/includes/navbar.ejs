@@ -24,18 +24,50 @@
     font-size: 1rem;
   }
   
+  .btn-property {
+    background-color: transparent;
+    color: #fe424d !important;
+    border: 2px solid #fe424d;
+    border-radius: 25px;
+    padding: 0.5rem 1.2rem !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-right: 1rem;
+    display: inline-block;
+  }
+
+  .btn-property:hover {
+    background-color: #fe424d;
+    color: #fff !important;
+    box-shadow: 0 4px 10px rgba(254, 66, 77, 0.3);
+  }
   
   @media (max-width: 768px) {
     .nav-link {
       padding: 0.5rem 0;
+      text-align: center;
+      width: 100%;
+    }
+    .btn-property {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      margin-right: 0;
+      width: 100%;
+    }
+    .navbar-nav {
+      width: 100%;
+    }
+    .navbar-nav .nav-item {
+      width: 100%;
     }
   }
 </style>
 
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/listings">
-      <i class="fa-solid fa-ghost"></i>
+    <a class="navbar-brand d-flex align-items-center gap-2" href="/listings" style="color: #fe424d; font-weight: 700; font-size: 1.5rem;">
+      <i class="fa-solid fa-compass fa-lg"></i>
+      Travel Buddy
     </a>
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -52,8 +84,8 @@
 
     
       <div class="navbar-nav ms-auto">
-        <form class="d-flex my-2 my-md-0" role="search">
-          <input class="form-control me-2 search-inp" type="search" placeholder="Search Destination" />
+        <form class="d-flex my-2 my-md-0" role="search" action="/listings" method="GET">
+          <input class="form-control me-2 search-inp" type="search" placeholder="Search Destination" name="location" value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>" />
           <button class="btn btn-search" type="submit">
             <i class="fa-solid fa-magnifying-glass"></i>Search
           </button>
@@ -62,7 +94,7 @@
 
       <ul class="navbar-nav ms-auto align-items-center">
         <li class="nav-item">
-          <a class="nav-link" href="/listings/new">Make Your Property Visible..</a>
+          <a class="nav-link btn-property" href="/listings/new">Make Your Property Visible</a>
         </li>
         <% if(!curruser){ %>
           <li class="nav-item"><a class="nav-link" href="/signup"><b>Signup</b></a></li>
