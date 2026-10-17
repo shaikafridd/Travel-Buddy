@@ -51,7 +51,7 @@ Ensure you have the following installed on your machine:
 ### 2. Clone the Repository
 Open your terminal and clone this repository to your local machine:
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/shaikafridd/Travel-Buddy.git
 cd travel-buddy
 ```
 
